@@ -1,3 +1,28 @@
+# GLAM <> Eliza
+
+This is a GLAM fork of Eliza. Code from glam.systems can be found in the `glam_plugin` branch https://github.com/glamsystems/eliza/tree/glam_plugin
+
+To start the glam agent, run:
+
+```
+pnpm run dev  --characters=\"characters/glam.character.json\"
+```
+
+A glam-cli docker image will be pulled from ghcr.io (github container registry). The glam-cli requires the following setup in order to interact with a GLAM vault:
+
+```
+$ ls $HOME/.glam-cli-docker
+config.json  keypair.json
+
+$ cat $HOME/.glam-cli-docker/config.json
+{
+  "helius_api_key": "[redacted]",
+  "keypair_path": "/workspace/keypair.json",
+  "priority_fee_level": "Low",
+  "fund": "[redacted]"
+}
+```
+
 # Eliza 🤖
 
 <div align="center">
@@ -6,7 +31,7 @@
 
 <div align="center">
 
-  📖 [Documentation](https://ai16z.github.io/eliza/) | 🎯 [Examples](https://github.com/thejoven/awesome-eliza)
+📖 [Documentation](https://ai16z.github.io/eliza/) | 🎯 [Examples](https://github.com/thejoven/awesome-eliza)
 
 </div>
 
@@ -16,33 +41,34 @@
 
 ## ✨ Features
 
--   🛠️ Full-featured Discord, Twitter and Telegram connectors
--   🔗 Support for every model (Llama, Grok, OpenAI, Anthropic, etc.)
--   👥 Multi-agent and room support
--   📚 Easily ingest and interact with your documents
--   💾 Retrievable memory and document store
--   🚀 Highly extensible - create your own actions and clients
--   ☁️ Supports many models (local Llama, OpenAI, Anthropic, Groq, etc.)
--   📦 Just works!
+- 🛠️ Full-featured Discord, Twitter and Telegram connectors
+- 🔗 Support for every model (Llama, Grok, OpenAI, Anthropic, etc.)
+- 👥 Multi-agent and room support
+- 📚 Easily ingest and interact with your documents
+- 💾 Retrievable memory and document store
+- 🚀 Highly extensible - create your own actions and clients
+- ☁️ Supports many models (local Llama, OpenAI, Anthropic, Groq, etc.)
+- 📦 Just works!
 
 ## Video Tutorials
+
 [AI Agent Dev School](https://www.youtube.com/watch?v=ArptLpQiKfI&list=PLx5pnFXdPTRzWla0RaOxALTSTnVq53fKL)
 
 ## 🎯 Use Cases
 
--   🤖 Chatbots
--   🕵️ Autonomous Agents
--   📈 Business Process Handling
--   🎮 Video Game NPCs
--   🧠 Trading
+- 🤖 Chatbots
+- 🕵️ Autonomous Agents
+- 📈 Business Process Handling
+- 🎮 Video Game NPCs
+- 🧠 Trading
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
--   [Python 2.7+](https://www.python.org/downloads/)
--   [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
--   [pnpm](https://pnpm.io/installation)
+- [Python 2.7+](https://www.python.org/downloads/)
+- [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [pnpm](https://pnpm.io/installation)
 
 > **Note for Windows Users:** [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install-manual) is required.
 
@@ -122,8 +148,8 @@ pnpm install --include=optional sharp
 
 ### Community & contact
 
--   [GitHub Issues](https://github.com/ai16z/eliza/issues). Best for: bugs you encounter using Eliza, and feature proposals.
--   [Discord](https://discord.gg/ai16z). Best for: sharing your applications and hanging out with the community.
+- [GitHub Issues](https://github.com/ai16z/eliza/issues). Best for: bugs you encounter using Eliza, and feature proposals.
+- [Discord](https://discord.gg/ai16z). Best for: sharing your applications and hanging out with the community.
 
 ## Contributors
 

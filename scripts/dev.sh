@@ -124,6 +124,15 @@ if ! pnpm build; then
   exit 1
 fi
 
+# Restart glam-cli docker container
+docker stop $(docker ps | grep ghcr.io/glamsystems/glam-cli |  awk '{print $1}')
+docker run -it -d --rm -v $HOME/.glam-cli-docker:/workspace ghcr.io/glamsystems/glam-cli
+export GLAM_CLI_CONTAINER_ID=$(docker ps | grep ghcr.io/glamsystems/glam-cli | awk '{print $1}')
+if [ -z $GLAM_CLI_CONTAINER_ID ]; then
+  echo "Failed to start glam-cli docker container."
+  exit 1
+fi
+
 # Run all commands concurrently
 if [ ${#COMMANDS[@]} -gt 0 ]; then
   npx concurrently --raw "${COMMANDS[@]}"
