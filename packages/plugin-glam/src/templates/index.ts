@@ -32,6 +32,7 @@ Here are some tokens' symbols and addresses:
 Extract the following information about the requested token swap:
 - Input token address (the token being sold)
 - Output token address (the token being bought)
+- Slippage tolerance (convert to basis points if users provide percentage)
 - Amount to swap (use exact amount user specified, do not use lamports)
 
 Respond with a JSON markdown block containing only the extracted values. Use null for any values that cannot be determined:
@@ -41,7 +42,8 @@ Respond with a JSON markdown block containing only the extracted values. Use nul
     "inputToken": string | null,
     "outputToken": string | null,
     "amount": string | null,
-    "slippage": number | null
+    "slippage": number | null,
+    "maxAccounts": number | null
 }
 \`\`\`
 `;
