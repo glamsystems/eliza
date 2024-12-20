@@ -20,6 +20,7 @@ interface SwapParams {
     outputToken: string;
     amount: string;
     slippage: number;
+    maxAccounts: number;
 }
 
 interface WrapUnwrapParams {
@@ -62,15 +63,6 @@ const getVaultBalances: Action = {
                 text: stdout,
             });
         });
-
-        const response = "";
-        if (response) {
-            callback({
-                text: response,
-            });
-        } else {
-            elizaLogger.error("failed to get vault balances.");
-        }
     },
     examples: [],
 } as Action;
@@ -103,10 +95,13 @@ const swapTokens: Action = {
         const GLAM_CLI_CONTAINER_ID = runtime.getSetting(
             "GLAM_CLI_CONTAINER_ID"
         );
-        const dockerCommand = `docker exec ${GLAM_CLI_CONTAINER_ID} node /mnt/glam/dist/cli/main.js fund swap -s 50 -m 20 ${swapParams.inputToken} ${swapParams.outputToken} ${swapParams.amount} `;
+        const dockerCommand = `docker exec ${GLAM_CLI_CONTAINER_ID} node /mnt/glam/dist/cli/main.js fund swap -s ${swapParams.slippage} -m ${swapParams.maxAccounts} ${swapParams.inputToken} ${swapParams.outputToken} ${swapParams.amount} `;
         exec(dockerCommand, (error: any, stdout: any, stderr: any) => {
             if (error) {
                 elizaLogger.error(`exec error: ${error}`);
+                callback({
+                    text: "failed to swap tokens",
+                });
                 return;
             }
             elizaLogger.log(`stdout: ${stdout}`);
@@ -142,7 +137,7 @@ const wrapUnwrap: Action = {
             context,
             modelClass: ModelClass.SMALL,
         })) as WrapUnwrapParams;
-        console.log("swapParams", wrapUnwrapParams);
+        console.log("wrapUnwrapParams", wrapUnwrapParams);
 
         const GLAM_CLI_CONTAINER_ID = runtime.getSetting(
             "GLAM_CLI_CONTAINER_ID"
