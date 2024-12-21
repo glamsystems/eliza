@@ -1,6 +1,6 @@
 {
     "name": "glam-ai",
-    "clients": ["telegram"],
+    "clients": ["lst", "telegram"],
     "modelProvider": "openai",
     "settings": {
         "secrets": {},

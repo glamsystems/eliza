@@ -5,6 +5,7 @@ import { DirectClientInterface } from "@ai16z/client-direct";
 import { DiscordClientInterface } from "@ai16z/client-discord";
 import { TelegramClientInterface } from "@ai16z/client-telegram";
 import { TwitterClientInterface } from "@ai16z/client-twitter";
+import { LstClientInterface } from "@glam/client-lst";
 import { FarcasterAgentClient } from "@ai16z/client-farcaster";
 import {
     AgentRuntime,
@@ -349,6 +350,11 @@ export async function initializeClients(
     if (clientTypes.includes("telegram")) {
         const telegramClient = await TelegramClientInterface.start(runtime);
         if (telegramClient) clients.telegram = telegramClient;
+    }
+
+    if (clientTypes.includes("lst")) {
+        const lstClient = await LstClientInterface.start(runtime);
+        if (lstClient) clients.lst = lstClient;
     }
 
     if (clientTypes.includes("twitter")) {
