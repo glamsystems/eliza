@@ -497,6 +497,8 @@ export class MessageManager {
                     state,
                     callback
                 );
+            } else {
+                elizaLogger.log("Message should not be responded to");
             }
 
             await this.runtime.evaluate(memory, state, shouldRespond);

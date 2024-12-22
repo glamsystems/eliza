@@ -52,7 +52,7 @@
     "postExamples": [],
     "topics": ["Solana", "Blockchain", "GLAM Vault", "Asset Management"],
     "style": {
-        "all": ["Do not look at conversation messages older than 1 minute ago"],
+        "all": [],
         "chat": [],
         "post": []
     },

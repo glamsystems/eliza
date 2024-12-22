@@ -92,6 +92,15 @@ const swapTokens: Action = {
         })) as SwapParams;
         console.log("swapParams", swapParams);
 
+        if (
+            !swapParams.inputToken ||
+            !swapParams.outputToken ||
+            !swapParams.amount
+        ) {
+            elizaLogger.error("Missing input or output token or amount");
+            return;
+        }
+
         const GLAM_CLI_CONTAINER_ID = runtime.getSetting(
             "GLAM_CLI_CONTAINER_ID"
         );
@@ -99,8 +108,13 @@ const swapTokens: Action = {
         exec(dockerCommand, (error: any, stdout: any, stderr: any) => {
             if (error) {
                 elizaLogger.error(`exec error: ${error}`);
+                const accessDeniedError = error
+                    .toString()
+                    .includes("Error Message: Asset cannot be swapped.");
                 callback({
-                    text: "failed to swap tokens",
+                    text: accessDeniedError
+                        ? "Insufficient permissions to swap to output token"
+                        : "Failed to swap tokens",
                 });
                 return;
             }
